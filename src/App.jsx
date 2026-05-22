@@ -29,7 +29,10 @@ function Auth() {
     e.preventDefault()
     setMsg('')
     const fn = mode === 'login' ? supabase.auth.signInWithPassword : supabase.auth.signUp
-    const { error } = await fn({ email, password })
+    const { error } = await fn({
+  email: email,
+  password: password
+})
     if (error) setMsg(error.message)
     else if (mode === 'signup') setMsg('Account created. Check email confirmation if Supabase asks for it.')
   }
